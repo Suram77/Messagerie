@@ -25,6 +25,8 @@ public class Client {
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
+    private ClientSend clientSend;
+    private ClientReceive clientReceive;
     
     public Client(String address, Integer port) throws IOException{
         this.address = address;
@@ -32,12 +34,8 @@ public class Client {
         this.socket = new Socket();
         this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.out = new PrintWriter(socket.getOutputStream());
-
-        
-        //Thread threadClientSend = new Thread(newClient);
-        //Thread threadClientReveive = new Thread(newClient);
-        //threadClientSend.start();
-        //threadClientReceive.start();
+        this.clientSend = new ClientSend(out);
+        this.clientReceive = new ClientReceive(this,in);
     }
     
     public void disconnectedServer() throws IOException{
