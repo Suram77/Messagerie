@@ -12,6 +12,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.io.Reader;
 
 /**
  *
@@ -24,9 +26,18 @@ public class Client {
     private PrintWriter out;
     private BufferedReader in;
     
-    public Client(String address, Integer port){
+    public Client(String address, Integer port) throws IOException{
         this.address = address;
         this.port = port;
+        this.socket = new Socket();
+        this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        this.out = new PrintWriter(socket.getOutputStream());
+
+        
+        //Thread threadClientSend = new Thread(newClient);
+        //Thread threadClientReveive = new Thread(newClient);
+        //threadClientSend.start();
+        //threadClientReceive.start();
     }
     
     public void disconnectedServer() throws IOException{
