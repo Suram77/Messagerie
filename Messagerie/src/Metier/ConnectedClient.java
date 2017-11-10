@@ -27,12 +27,12 @@ public class ConnectedClient implements Runnable{
     private BufferedReader in;
     private PrintWriter out;
     
-    public ConnectedClient(Server serv,Socket sock){
+    public ConnectedClient(Server serv,Socket sock) throws IOException{
         this.server = serv;
         this.socket = sock;
         this.id = idCounter;
-        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        out = new PrintWriter(socket.getOutputStream());
+        in = new BufferedReader(new InputStreamReader(getSocket().getInputStream()));
+        out = new PrintWriter(getSocket().getOutputStream());
         System.out.println("Nouvelle connexion, id = " + id);
     }
     @Override
@@ -41,14 +41,14 @@ public class ConnectedClient implements Runnable{
         boolean isActive = true;
         while (isActive){
             try{
-            message = in.readLine();
+            message = getIn().readLine();
             if (message != "")
             {
-                server.broadcastMessage(message,id);
+                    getServer().broadcastMessage(message, getId());
             }
             else
             {
-                server.disconnectedClient(this);
+                    getServer().disconnectedClient(this);
                 isActive = false;
             }
             }
@@ -58,12 +58,102 @@ public class ConnectedClient implements Runnable{
         }
     }
     public void sendMessage(String m){
-        this.out.println(m);
-        this.out.flush();
+        this.getOut().println(m);
+        this.getOut().flush();
     }
     public void closeClient(){
-        this.in.close();
-        this.out.close();
-        this.socket.close();
+        try{
+        this.getIn().close();
+        this.getOut().close();
+        this.getSocket().close();
+        }
+        catch(Exception e){
+            
+        }
+    }
+    
+    
+    /**
+     * @return the idCounter
+     */
+    public static int getIdCounter() {
+        return idCounter;
+    }
+
+    /**
+     * @param aIdCounter the idCounter to set
+     */
+    public static void setIdCounter(int aIdCounter) {
+        idCounter = aIdCounter;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the server
+     */
+    public Server getServer() {
+        return server;
+    }
+
+    /**
+     * @param server the server to set
+     */
+    public void setServer(Server server) {
+        this.server = server;
+    }
+
+    /**
+     * @return the socket
+     */
+    public Socket getSocket() {
+        return socket;
+    }
+
+    /**
+     * @param socket the socket to set
+     */
+    public void setSocket(Socket socket) {
+        this.socket = socket;
+    }
+
+    /**
+     * @return the in
+     */
+    public BufferedReader getIn() {
+        return in;
+    }
+
+    /**
+     * @param in the in to set
+     */
+    public void setIn(BufferedReader in) {
+        this.in = in;
+    }
+
+    /**
+     * @return the out
+     */
+    public PrintWriter getOut() {
+        return out;
+    }
+
+    /**
+     * @param out the out to set
+     */
+    public void setOut(PrintWriter out) {
+        this.out = out;
     }
 }
