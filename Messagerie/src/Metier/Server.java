@@ -19,8 +19,16 @@ public class Server {
     }
     
     public Server(Integer port){
+        try{
         this.port = port;
         this.clientsConnectes = new ArrayList<ConnectedClient>();
+        Thread threadConnection = new Thread(new Connection(this));
+        threadConnection.start(); 
+        }
+        catch (Exception e){
+            
+        }
+
     }
     
     public void addClient(ConnectedClient newClient){

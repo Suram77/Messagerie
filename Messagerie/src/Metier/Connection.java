@@ -23,6 +23,7 @@ public class Connection implements Runnable {
     {
         this.server = monServ;
         this.serverSocket = new ServerSocket(getServer().getPort());
+
     }
     
     @Override
