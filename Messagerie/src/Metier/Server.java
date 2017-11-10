@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Metier;
+import java.util.*;
 
 /**
  *
@@ -37,9 +38,9 @@ public class Server {
         }
     }
     
-    public void disconnectedClient(ConnectedClient unClient){
-        for(ConnectedClient unClient : clientsConnectes){
-            unClient.sendMessage("Le client "+unClient.getId()+" a quitté le chat");
+    public void disconnectedClient(ConnectedClient discClient){
+        for(ConnectedClient client : clientsConnectes){
+            client.sendMessage("Le client "+discClient.getId()+" a quitté le chat");
         }
     }
 
