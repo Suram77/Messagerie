@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Metier;
+package Server;
 import java.lang.*;
 import java.lang.Object;
 import java.net.ServerSocket;

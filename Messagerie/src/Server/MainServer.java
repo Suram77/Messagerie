@@ -3,14 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Metier;
+package Server;
 import java.io.IOException;
+import javafx.application.*;
+import javafx.stage.*;
+import javafx.scene.*;
+import javafx.scene.text.*;
 
 /**
  *
  * @author p1409881
  */
-public class MainServer {
+public class MainServer extends Application{
         /**
      * creates a new server
      * @param args
@@ -31,7 +35,12 @@ public class MainServer {
     {
         e1.printStackTrace();
     }
-}
+    }
+    
+    @Override
+    public void start(Stage PrimaryStage) throws Exception{
+        
+    }
     
     private static void printUsage() 
     {
