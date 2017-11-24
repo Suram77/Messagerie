@@ -32,8 +32,8 @@ public class Client {
         this.address = address;
         this.port = port;
         this.socket = new Socket();
-        this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        this.out = new PrintWriter(socket.getOutputStream());
+        this.in = new BufferedReader(new InputStreamReader(getSocket().getInputStream()));
+        this.out = new PrintWriter(getSocket().getOutputStream());
         this.clientSend = new ClientSend(out);
         this.clientReceive = new ClientReceive(this,in);
     }
@@ -41,7 +41,21 @@ public class Client {
     public void disconnectedServer() throws IOException{
         this.in.close();
         this.out.close();
-        this.socket.close();
+        this.getSocket().close();
         System.exit(0);
+    }
+    
+    /**
+     * @return the socket
+     */
+    public Socket getSocket() {
+        return socket;
+    }
+
+    /**
+     * @param socket the socket to set
+     */
+    public void setSocket(Socket socket) {
+        this.socket = socket;
     }
 }

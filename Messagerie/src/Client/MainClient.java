@@ -8,6 +8,8 @@ package Client;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import javafx.application.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.text.*;
@@ -51,6 +53,7 @@ public class MainClient extends Application{
         textReceived.setStyle("-fx-control-inner-background : BLUE;-fx-text-fill: #000000;");
         textReceived.setLayoutX(50);
         textReceived.setLayoutY(50);
+        textReceived.setEditable(false);
         root.getChildren().add(textReceived);
         
         //label
@@ -67,6 +70,7 @@ public class MainClient extends Application{
         textMembres.setPrefWidth(100);
         textMembres.setLayoutX(500);
         textMembres.setLayoutY(50);
+        textMembres.setEditable(false);
         textMembres.setStyle("-fx-control-inner-background : RED;-fx-text-fill: #000000;");
         root.getChildren().add(textMembres);
         
@@ -78,12 +82,27 @@ public class MainClient extends Application{
         boutonEnvoyer.setLayoutY(350);
         root.getChildren().add(boutonEnvoyer);
         
+        boutonEnvoyer.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event){
+                
+            }
+        });
+        
         //bouton supprimer
         final Button boutonSupprimer = new Button("Supprimer");
         boutonSupprimer.setPrefHeight(30);
         boutonSupprimer.setPrefWidth(100);
         boutonSupprimer.setLayoutX(500);
         boutonSupprimer.setLayoutY(385);
+        
+        boutonSupprimer.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event){
+                chat.setText("");
+            }
+        });
+        
         root.getChildren().add(boutonSupprimer);
         
 //            vhat.setY(50);
