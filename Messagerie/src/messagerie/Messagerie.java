@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package messagerie;
+import Client.*;
+import java.util.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,7 +18,10 @@ public class Messagerie {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        MainClient prog = new MainClient();
+        String[] myargs = new String[1];
+        myargs[0] = "1050";
+        prog.main(myargs);
     }
     
 }

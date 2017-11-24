@@ -5,6 +5,7 @@
  */
 package Server;
 import java.io.IOException;
+import java.util.List;
 import javafx.application.*;
 import javafx.stage.*;
 import javafx.scene.*;
@@ -14,7 +15,7 @@ import javafx.scene.text.*;
  *
  * @author p1409881
  */
-public class MainServer extends Application{
+public class MainServer{
         /**
      * creates a new server
      * @param args
@@ -35,11 +36,6 @@ public class MainServer extends Application{
     {
         e1.printStackTrace();
     }
-    }
-    
-    @Override
-    public void start(Stage PrimaryStage) throws Exception{
-        
     }
     
     private static void printUsage() 
