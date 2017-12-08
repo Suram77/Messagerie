@@ -12,7 +12,7 @@ import java.io.BufferedReader;
  * @author p1409881
  */
 public class ClientReceive implements Runnable{
-        private Client client;
+    private Client client;
     private BufferedReader in;
     
     public ClientReceive(Client client, BufferedReader in)

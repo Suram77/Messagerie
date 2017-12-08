@@ -17,6 +17,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import Server.*;
+import messagerie.Messagerie;
+
 
 /**
  *
@@ -24,101 +27,40 @@ import javafx.scene.control.Button;
  */
 
 public class MainClient extends Application{
-private String discussion = "";
-/**
- * construct a new client
- * @param args
- */
-    public static void main(String[] args) {
-        Application.launch(MainClient.class,args);
-    }
-    @Override
-    public void start(Stage PrimaryStage) throws Exception{           
-        Group root = new Group();
-        Scene scene = new Scene(root);
+    public static void main(String[] args) {    
+            MainClient prog = new MainClient();
+            String[] myargs = new String[2];
+            myargs[0] = "127.0.0.1";
+            myargs[1] = "1050";
+            Application.launch(MainClient.class,myargs);
+    //        Création du client
 
-        //Zone ecriture
-        TextArea chat = new TextArea();
-        chat.setPrefHeight(100);
-        chat.setPrefWidth(400);
-        chat.positionCaret(5);
-        chat.setStyle("-fx-control-inner-background : #F7F7F7;-fx-text-fill: #000000;");
-        chat.setLayoutX(50);
-        chat.setLayoutY(350);
-        
-        
-        //Zone des messages
-        TextArea textReceived = new TextArea();
-        textReceived.setPrefHeight(275);
-        textReceived.setPrefWidth(400);
-        textReceived.setStyle("-fx-control-inner-background : BLUE;-fx-text-fill: #000000;");
-        textReceived.setLayoutX(50);
-        textReceived.setLayoutY(50);
-        textReceived.setEditable(false);
-        root.getChildren().add(textReceived);
-        
-        //label
-        Label labelMembres = new Label("Actifs :");
-        //labelMembres.setPrefHeight();
-        //labelMembres.setPrefWidth();
-        labelMembres.setLayoutX(500);
-        labelMembres.setLayoutY(25);
-        root.getChildren().add(labelMembres);
-        
-        //Zone liste des membres
-        TextArea textMembres = new TextArea();
-        textMembres.setPrefHeight(275);
-        textMembres.setPrefWidth(100);
-        textMembres.setLayoutX(500);
-        textMembres.setLayoutY(50);
-        textMembres.setEditable(false);
-        textMembres.setStyle("-fx-control-inner-background : RED;-fx-text-fill: #000000;");
-        root.getChildren().add(textMembres);
-        
-        //Bouton envoyer
-        Button boutonEnvoyer = new Button("Envoyer");
-        boutonEnvoyer.setPrefHeight(30);
-        boutonEnvoyer.setPrefWidth(100);
-        boutonEnvoyer.setLayoutX(500);
-        boutonEnvoyer.setLayoutY(350);
-        root.getChildren().add(boutonEnvoyer);
-        
-        boutonEnvoyer.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event){
-                discussion += chat.getText() + "\n";
-                textReceived.setText(discussion);
-                chat.setText("");
-            }
-        });
-        
-        //bouton supprimer
-        Button boutonSupprimer = new Button("Supprimer");
-        boutonSupprimer.setPrefHeight(30);
-        boutonSupprimer.setPrefWidth(100);
-        boutonSupprimer.setLayoutX(500);
-        boutonSupprimer.setLayoutY(385);
-        
-        boutonSupprimer.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event){
-                chat.setText("");
-            }
-        });
-        
-        root.getChildren().add(boutonSupprimer);
-        
-//            vhat.setY(50);
-//            r.setWidth(100);
-//            r.setHeight(100);
-//            r.setArcWidth(20);
-//            r.setArcHeight(20);
-        //root.getChildren().add(text);
-        root.getChildren().add(chat);
-        PrimaryStage.setTitle("Messagerie");
-        PrimaryStage.setScene(scene);
-        PrimaryStage.show();
+    ////        try{
+    ////        Client client1 = new Client(myargs[0],Integer.parseInt("1049"));
+
+    ////        ConnectedClient clientConnected1 = new ConnectedClient(monServ,client1.getSocket());
+    ////        monServ.addClient(clientConnected1);
+    ////        }
+    ////        catch (Exception e)
+    ////        {
+    ////            
+    ////        }
+
     }
+            @Override
+        public void start(Stage PrimaryStage) throws Exception{ 
+            try{
+                Client client1 = new Client("127.0.0.1",Integer.parseInt("1050"));
+                PrimaryStage.setTitle("Messagerie");
+                PrimaryStage.setScene(client1.getMonInterface().getScene());
+                PrimaryStage.show();
+            }
+            catch (Exception e){
+
+            }
+            
+        
+        }
     private static void printUsage() 
     {
         System.out.println("java client.Client <address> <port>");

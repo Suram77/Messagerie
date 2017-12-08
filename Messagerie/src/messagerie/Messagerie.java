@@ -8,35 +8,35 @@ import Client.*;
 import Server.*;
 import java.util.*;
 import java.util.ArrayList;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 /**
  *
  * @author p1712712
  */
-public class Messagerie {
+public class Messagerie{
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        
+// TEST CLIENT
         MainClient prog = new MainClient();
         String[] myargs = new String[2];
         myargs[0] = "127.0.0.1";
         myargs[1] = "1050";
-////        Création du serveur
-////        Server monServ = new Server(Integer.parseInt("1049"));
-////        Création du client
-////        try{
-////        Client client1 = new Client(myargs[0],Integer.parseInt("1049"));
         prog.main(myargs);
-////        ConnectedClient clientConnected1 = new ConnectedClient(monServ,client1.getSocket());
-////        monServ.addClient(clientConnected1);
-////        }
-////        catch (Exception e)
-////        {
-////            
-////        }
+
+
+
+//Test SERVEUR
+//        String[] myargs = new String[1];
+//        myargs[0] = "1050";
+//        MainServer prog = new MainServer();
+//        prog.main(myargs);
 
     }
-    
 }

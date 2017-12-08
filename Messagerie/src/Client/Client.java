@@ -14,12 +14,29 @@ import java.io.PrintWriter;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 /**
  *
  * @author p1712712
  */
 public class Client {
+
+    /**
+     * @return the monInterface
+     */
+    public Interface getMonInterface() {
+        return monInterface;
+    }
+
+    /**
+     * @param monInterface the monInterface to set
+     */
+    public void setMonInterface(Interface monInterface) {
+        this.monInterface = monInterface;
+    }
+
     private Integer port;
     private String address;
     private Socket socket;
@@ -27,15 +44,18 @@ public class Client {
     private BufferedReader in;
     private ClientSend clientSend;
     private ClientReceive clientReceive;
+    private Interface monInterface;
     
     public Client(String address, Integer port) throws IOException{
         this.address = address;
         this.port = port;
         this.socket = new Socket();
-        this.in = new BufferedReader(new InputStreamReader(getSocket().getInputStream()));
-        this.out = new PrintWriter(getSocket().getOutputStream());
-        this.clientSend = new ClientSend(out);
-        this.clientReceive = new ClientReceive(this,in);
+        this.monInterface = new Interface(this);
+        
+//        this.in = new BufferedReader(new InputStreamReader(getSocket().getInputStream()));
+//        this.out = new PrintWriter(getSocket().getOutputStream());
+//        this.clientSend = new ClientSend(out);
+//        this.clientReceive = new ClientReceive(this,in);
     }
     
     public void disconnectedServer() throws IOException{
@@ -58,4 +78,6 @@ public class Client {
     public void setSocket(Socket socket) {
         this.socket = socket;
     }
+
+
 }

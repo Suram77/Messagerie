@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Server;
+import Client.Interface;
 import java.lang.*;
 import java.lang.Object;
 import java.net.ServerSocket;
@@ -12,11 +13,13 @@ import java.io.*;
 import java.io.PrintWriter;
 import java.io.InputStreamReader;
 
+
 /**
  *
  * @author p1409881
  */
 public class ConnectedClient implements Runnable{
+
     // il va permettre d’attribuer des identifiants uniques à chaque client. 
     // C’est simplement un compteur d’instances crées
     private static int idCounter;
@@ -31,8 +34,8 @@ public class ConnectedClient implements Runnable{
         this.server = serv;
         this.socket = sock;
         this.id = idCounter;
-        in = new BufferedReader(new InputStreamReader(getSocket().getInputStream()));
-        out = new PrintWriter(getSocket().getOutputStream());
+//        in = new BufferedReader(new InputStreamReader(getSocket().getInputStream()));
+//        out = new PrintWriter(getSocket().getOutputStream());
         System.out.println("Nouvelle connexion, id = " + id);
     }
     @Override
@@ -57,10 +60,11 @@ public class ConnectedClient implements Runnable{
             }
         }
     }
-    public void sendMessage(String m){
-        this.getOut().println(m);
-        this.getOut().flush();
+    public void sendMessage(String m){      
+//        this.getOut().println(m);
+//        this.getOut().flush();
     }
+    
     public void closeClient(){
         try{
         this.getIn().close();
@@ -156,4 +160,6 @@ public class ConnectedClient implements Runnable{
     public void setOut(PrintWriter out) {
         this.out = out;
     }
+    
+
 }

@@ -30,6 +30,8 @@ public class MainServer{
         {
             Integer port = new Integer(args[0]);
             Server server = new Server(port);
+            Connection maConnexion = new Connection(server);
+            maConnexion.run();
         }
     } 
     catch (Exception e1) 
