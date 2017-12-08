@@ -24,6 +24,7 @@ import javafx.scene.control.Button;
  */
 
 public class MainClient extends Application{
+private String discussion = "";
 /**
  * construct a new client
  * @param args
@@ -37,7 +38,7 @@ public class MainClient extends Application{
         Scene scene = new Scene(root);
 
         //Zone ecriture
-        final TextArea chat = new TextArea();
+        TextArea chat = new TextArea();
         chat.setPrefHeight(100);
         chat.setPrefWidth(400);
         chat.positionCaret(5);
@@ -47,7 +48,7 @@ public class MainClient extends Application{
         
         
         //Zone des messages
-        final TextArea textReceived = new TextArea();
+        TextArea textReceived = new TextArea();
         textReceived.setPrefHeight(275);
         textReceived.setPrefWidth(400);
         textReceived.setStyle("-fx-control-inner-background : BLUE;-fx-text-fill: #000000;");
@@ -57,7 +58,7 @@ public class MainClient extends Application{
         root.getChildren().add(textReceived);
         
         //label
-        final Label labelMembres = new Label("Actifs :");
+        Label labelMembres = new Label("Actifs :");
         //labelMembres.setPrefHeight();
         //labelMembres.setPrefWidth();
         labelMembres.setLayoutX(500);
@@ -65,7 +66,7 @@ public class MainClient extends Application{
         root.getChildren().add(labelMembres);
         
         //Zone liste des membres
-        final TextArea textMembres = new TextArea();
+        TextArea textMembres = new TextArea();
         textMembres.setPrefHeight(275);
         textMembres.setPrefWidth(100);
         textMembres.setLayoutX(500);
@@ -75,7 +76,7 @@ public class MainClient extends Application{
         root.getChildren().add(textMembres);
         
         //Bouton envoyer
-        final Button boutonEnvoyer = new Button("Envoyer");
+        Button boutonEnvoyer = new Button("Envoyer");
         boutonEnvoyer.setPrefHeight(30);
         boutonEnvoyer.setPrefWidth(100);
         boutonEnvoyer.setLayoutX(500);
@@ -85,12 +86,14 @@ public class MainClient extends Application{
         boutonEnvoyer.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event){
-                
+                discussion += chat.getText() + "\n";
+                textReceived.setText(discussion);
+                chat.setText("");
             }
         });
         
         //bouton supprimer
-        final Button boutonSupprimer = new Button("Supprimer");
+        Button boutonSupprimer = new Button("Supprimer");
         boutonSupprimer.setPrefHeight(30);
         boutonSupprimer.setPrefWidth(100);
         boutonSupprimer.setLayoutX(500);
