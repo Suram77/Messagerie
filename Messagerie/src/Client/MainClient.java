@@ -24,16 +24,30 @@ import messagerie.Messagerie;
 /**
  *
  * @author p1409881
- */
+ */      
+
+    //        try{
+    //        Client client1 = new Client(myargs[0],Integer.parseInt("1049"));
+
+    //        ConnectedClient clientConnected1 = new ConnectedClient(monServ,client1.getSocket());
+    //        monServ.addClient(clientConnected1);
+    //        }
+    //        catch (Exception e)
+    //        {
+    //            
+    //        }
 
 public class MainClient extends Application{
     public static void main(String[] args) {    
-            MainClient prog = new MainClient();
-            String[] myargs = new String[2];
-            myargs[0] = "127.0.0.1";
-            myargs[1] = "1050";
-            Application.launch(MainClient.class,myargs);
-    //        Création du client
+        
+            Application.launch(MainClient.class,args);
+//            try{
+//            Client client1 = new Client(args[0],Integer.parseInt(args[1]));
+//            }
+//            catch (Exception e)
+//            {
+//                
+//            }
 
     ////        try{
     ////        Client client1 = new Client(myargs[0],Integer.parseInt("1049"));
@@ -47,16 +61,17 @@ public class MainClient extends Application{
     ////        }
 
     }
-            @Override
+        @Override
         public void start(Stage PrimaryStage) throws Exception{ 
             try{
-                Client client1 = new Client("127.0.0.1",Integer.parseInt("1050"));
+                Client client1 = new Client("127.0.0.1",Integer.parseInt("1080"));
                 PrimaryStage.setTitle("Messagerie");
                 PrimaryStage.setScene(client1.getMonInterface().getScene());
                 PrimaryStage.show();
             }
             catch (Exception e){
-
+                e.printStackTrace();
+                  
             }
             
         

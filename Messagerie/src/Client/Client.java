@@ -49,13 +49,13 @@ public class Client {
     public Client(String address, Integer port) throws IOException{
         this.address = address;
         this.port = port;
-        this.socket = new Socket();
+        this.socket = new Socket(address,port);
         this.monInterface = new Interface(this);
         
-//        this.in = new BufferedReader(new InputStreamReader(getSocket().getInputStream()));
-//        this.out = new PrintWriter(getSocket().getOutputStream());
-//        this.clientSend = new ClientSend(out);
-//        this.clientReceive = new ClientReceive(this,in);
+        this.in = new BufferedReader(new InputStreamReader(getSocket().getInputStream()));
+        this.out = new PrintWriter(getSocket().getOutputStream());
+        this.clientSend = new ClientSend(out);
+        this.clientReceive = new ClientReceive(this,in);
     }
     
     public void disconnectedServer() throws IOException{
@@ -63,6 +63,11 @@ public class Client {
         this.out.close();
         this.getSocket().close();
         System.exit(0);
+    }
+    
+    public void envoiMessage(String message)
+    {
+        out.println(message);
     }
     
     /**

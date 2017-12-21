@@ -34,7 +34,7 @@ public class Messagerie{
 
 //Test SERVEUR
 //        String[] myargs = new String[1];
-//        myargs[0] = "1050";
+//        myargs[0] = "1090";
 //        MainServer prog = new MainServer();
 //        prog.main(myargs);
 

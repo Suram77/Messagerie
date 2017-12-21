@@ -34,8 +34,8 @@ public class ConnectedClient implements Runnable{
         this.server = serv;
         this.socket = sock;
         this.id = idCounter;
-//        in = new BufferedReader(new InputStreamReader(getSocket().getInputStream()));
-//        out = new PrintWriter(getSocket().getOutputStream());
+        in = new BufferedReader(new InputStreamReader(getSocket().getInputStream()));
+        out = new PrintWriter(getSocket().getOutputStream());
         System.out.println("Nouvelle connexion, id = " + id);
     }
     @Override
@@ -47,11 +47,11 @@ public class ConnectedClient implements Runnable{
             message = getIn().readLine();
             if (message != "")
             {
-                    getServer().broadcastMessage(message, getId());
+                getServer().broadcastMessage(message, getId());
             }
             else
             {
-                    getServer().disconnectedClient(this);
+                getServer().disconnectedClient(this);
                 isActive = false;
             }
             }

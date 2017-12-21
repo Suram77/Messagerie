@@ -95,6 +95,7 @@ public class Interface{
 //                monServ.broadcastMessage(chat.getText(),clientConnecte1.getId());
 //                discussion += chat.getText() + "\n";
                  textReceived.setText(discussion);
+                 cli.envoiMessage(chat.getText()+"\n");
 //                chat.setText("");
             }
         });
