@@ -24,12 +24,20 @@ public class ClientReceive implements Runnable{
     @Override
     public void run()
     {
-        boolean isActive = true ;
+        boolean isActive = true;
         while(isActive) {
             try{
             String message = in.readLine();
             if (message != null) {
-            System.out.println("\nMessage reçu : " + message);
+            if (message.substring(0,2).equals("#m"))
+            {
+                client.getMonInterface().afficheMessageDuServeur(message.substring(2));
+            }
+            if (message.substring(0,2).equals("#c"))
+            {
+                client.getMonInterface().AfficheListeClients(message.substring(2));
+            }
+            //System.out.println("\nMessage reçu : " + message);
             } else {
             isActive = false;
             }

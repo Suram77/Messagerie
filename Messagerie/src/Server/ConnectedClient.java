@@ -33,6 +33,7 @@ public class ConnectedClient implements Runnable{
     public ConnectedClient(Server serv,Socket sock) throws IOException{
         this.server = serv;
         this.socket = sock;
+        idCounter++;
         this.id = idCounter;
         in = new BufferedReader(new InputStreamReader(getSocket().getInputStream()));
         out = new PrintWriter(getSocket().getOutputStream());
@@ -61,8 +62,8 @@ public class ConnectedClient implements Runnable{
         }
     }
     public void sendMessage(String m){      
-//        this.getOut().println(m);
-//        this.getOut().flush();
+        this.getOut().println(m);
+        this.getOut().flush();
     }
     
     public void closeClient(){

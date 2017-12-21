@@ -13,29 +13,39 @@ import java.util.*;
 public class Server {
     private Integer port;
     private List<ConnectedClient> clientsConnectes; 
+    private String listeClients;
     
     public Server(){
         this.port = null;
+        listeClients = "";
     }
     
     public Server(Integer port){
         this.port = port;
         this.clientsConnectes = new ArrayList<ConnectedClient>();
+        listeClients = "";
     }
     
     public void addClient(ConnectedClient newClient){
+       clientsConnectes.add(newClient);
+       listeClients += "Client"+newClient.getId()+"\n";
         for (ConnectedClient unClient : clientsConnectes){
-            unClient.sendMessage("Le client "+newClient.getId()+" vient de se connecter");
+            unClient.sendMessage("#c"+listeClients); // envoie liste clients
+            unClient.sendMessage("#mLe client "+newClient.getId()+" vient de se connecter");
         }
-        clientsConnectes.add(newClient);
     }
     
     public void broadcastMessage(String message, Integer id){
-        for(ConnectedClient unClient : clientsConnectes){
-            if(unClient.getId() != id){
-                unClient.sendMessage("Message de "+id+" : "+message);
-            }
-        }
+        System.out.println("Message du client "+id+" : "+message);
+        if(message.equals("") == false)
+        {
+         for(ConnectedClient unClient : clientsConnectes){
+             unClient.sendMessage("#mMessage du client "+id+" : "+message);
+ //            if(unClient.getId() != id){
+ //                unClient.sendMessage("Message de "+id+" : "+message);
+ //            }
+         }
+       }
     }
     
     public void disconnectedClient(ConnectedClient discClient){

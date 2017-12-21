@@ -35,9 +35,11 @@ public class Interface{
     private Button boutonEnvoyer = new Button("Envoyer");
     private Button boutonSupprimer = new Button("Supprimer");
     private String discussion;
+    private String listeMembres;
     
     public Interface (Client cli){
         discussion = "";
+        listeMembres = "";
         try{
         root = new Group();
         scene = new Scene(getRoot());
@@ -91,11 +93,12 @@ public class Interface{
         boutonEnvoyer.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event){
-                  discussion += chat.getText() + "\n";
+//                  discussion += chat.getText() + "\n";
 //                monServ.broadcastMessage(chat.getText(),clientConnecte1.getId());
 //                discussion += chat.getText() + "\n";
-                 textReceived.setText(discussion);
+//                 textReceived.setText(discussion);
                  cli.envoiMessage(chat.getText()+"\n");
+                 getChat().setText("");
 //                chat.setText("");
             }
         });
@@ -126,6 +129,24 @@ public class Interface{
         }
         catch (Exception e){
             
+        }
+    }
+    
+    public void afficheMessageDuServeur(String message)
+    {
+        if(message != "")
+        {
+            discussion += message + "\n";
+            textReceived.setText(discussion);
+        }
+    }
+    
+    public void AfficheListeClients(String listeClient)
+    {
+        if(listeClient != "")
+        {
+            listeMembres = listeClient + "\n";
+            textMembres.setText(listeMembres);
         }
     }
     

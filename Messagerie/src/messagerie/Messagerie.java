@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author p1712712
+// * @author p1712712
  */
 public class Messagerie{
 
@@ -24,19 +24,19 @@ public class Messagerie{
         
         
 // TEST CLIENT
-        MainClient prog = new MainClient();
-        String[] myargs = new String[2];
-        myargs[0] = "127.0.0.1";
-        myargs[1] = "1050";
-        prog.main(myargs);
-
-
-
-//Test SERVEUR
-//        String[] myargs = new String[1];
-//        myargs[0] = "1090";
-//        MainServer prog = new MainServer();
+//        MainClient prog = new MainClient();
+//        String[] myargs = new String[2];
+//        myargs[0] = "127.0.0.1";
+//        myargs[1] = "1080";
 //        prog.main(myargs);
+
+
+
+////Test SERVEUR
+        String[] myargs = new String[1];
+        myargs[0] = "1080";
+        MainServer prog = new MainServer();
+        prog.main(myargs);
 
     }
 }

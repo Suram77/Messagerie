@@ -54,8 +54,10 @@ public class Client {
         
         this.in = new BufferedReader(new InputStreamReader(getSocket().getInputStream()));
         this.out = new PrintWriter(getSocket().getOutputStream());
-        this.clientSend = new ClientSend(out);
+        //this.clientSend = new ClientSend(out);
         this.clientReceive = new ClientReceive(this,in);
+        Thread threadClientReceive = new Thread(clientReceive);
+        threadClientReceive.start();
     }
     
     public void disconnectedServer() throws IOException{
@@ -67,7 +69,8 @@ public class Client {
     
     public void envoiMessage(String message)
     {
-        out.println(message);
+        this.out.println(message);
+        this.out.flush();
     }
     
     /**
